@@ -24,14 +24,16 @@ return true if that succeeds, false otherwise
     l = s.split()
     size = len(a[0])
     l_idx = 1
-    while size > 0 :
+    print l
+    while l_idx < size :
 		assert int(l[l_idx]) > 0 
 		assert int(l[l_idx]) < 101
 		assert int(l[0]) != 0 
+		print a
 		a[int(l[0])][l_idx-1] = int(l[l_idx])
+		print a
 		l_idx += 1
-		size -= 1
-    arrayprint = a
+		#size -= 1
     return True
 
 
@@ -68,7 +70,8 @@ w is a writer
     vertex_count = int(l[0])
     rule_count = int(l[1])
     idx = 0
-    a = [[0]] * (vertex_count+1)
+    #a = [[0] * (vertex_count+1)] * (vertex_count+1)
+    a = [[None]*(vertex_count+1) for _ in range(vertex_count+1)]
     while PFD_read(r, a) :
         v = PFD_eval(a)
         PFD_print(w,v)
