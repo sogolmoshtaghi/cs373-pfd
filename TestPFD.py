@@ -19,6 +19,7 @@ To test the program:
 import StringIO
 import unittest
 import sys
+import Queue
 
 from PFD import PFD_read, PFD_eval, PFD_print, PFD_solve, PFD_removal
 
@@ -94,20 +95,25 @@ class TestPFD (unittest.TestCase) :
 		successors = [[0]*(1) for _ in range(6)]
 		w = sys.stdout
 		b = PFD_eval(a,successors,w)
-		self.assert_(successors == [[0], [0,3,5], [0], [0, 2,4], [0], [0,2,3]])        #Testing the list of successors
-		self.assert_(successors[1][1] == 3)
-		self.assert_(successors[1][2] == 5)
-		self.assert_(successors[1][0] == 0)     
+		self.assert_(successors == [[0], [0,3,5], [0], [0, 2,4], [0], [0,2,3]])        #Testing the list of successors    
    
     def test_eval3 (self):
-		a = [[0,0,0],[1,2,0],[1,1,0]]
-		successors = [[0]*(1) for _ in range(3)]
+		a = [[0,0,0,0],[0,0,0,0],[2,1,3,0],[1,1,0,0]]
+		successors = [[0]*(1) for _ in range(4)]
 		w = sys.stdout
 		b = PFD_eval(a,successors,w)
-		self.assert_(successors[1][1] == 2)        #Testing the list of successors
-		self.assert_(successors[2][1] == 1)
-		self.assert_(successors[0][0] == 0)
-		self.assert_(successors[1][0] == 0)       
+		self.assert_(successors == [[0],[0,2,3],[0],[0,2]])        #Testing the list of successors
+
+	# -----------
+    # PFD_removal
+    # -----------
+    def test_removal1 (self):
+		a = [[0,0,0],[1,2,0],[1,1,0]]
+		successors = [[0],[0,2],[0,1]]
+		pq = Queue.PriorityQueue()
+		w = sys.stdout
+		b = PFD_removal(a,pq,successors,w)
+		self.assert_(b == "")	     
         
 # ----
 # main
