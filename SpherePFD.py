@@ -5,7 +5,7 @@
 # PFD
 # ---------------------------
 import Queue
-
+import sys
 
 # ------------
 # PFD_read
@@ -118,3 +118,10 @@ w is a writer
 		counter += 1
     v = PFD_eval(a, successors,w)													
         											
+
+
+# ----
+# main
+# ----
+
+PFD_solve(sys.stdin, sys.stdout)									
