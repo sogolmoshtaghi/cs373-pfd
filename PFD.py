@@ -73,17 +73,17 @@ def PFD_removal(i,pq,j):
 			i[removal][0] = -1
 			list_idx = [k for k, e in enumerate(j[removal]) if e != 0] #getting the list of indeces of non-zero elements in the successors list
 			size_list_idx = len(list_idx)
-			index = 1
+			index = 0
 			list_successors = []
 			while index < size_list_idx:
-				list_successors.append(j[removal][index])				#creating a list of actual successors using the index list 
+				list_successors.append(j[removal][list_idx[index]])				#creating a list of actual successors using the index list 
 				index += 1
 			size_list_successors = len(list_successors)
 			index = 0
 			while index < size_list_successors:
 				i[list_successors[index]][0] -= 1
 				if i[list_successors[index]][0] == 0:
-					pq.put(i[list_successors[index]][0])
+					pq.put(list_successors[index])
 				index += 1
 			idx += 1
 		result += str(removal) + " "
