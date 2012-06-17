@@ -31,11 +31,10 @@ class TestPFD (unittest.TestCase) :
     # ----
 
     def test_read (self) :
-        r = StringIO.StringIO("1 1 2")
-        a = [[None]*(3) for _ in range(3)]
+        r = StringIO.StringIO("1 1 2\n")
+        a = [[0]*(3) for _ in range(3)]
         b = PFD_read(r, a)
-        self.assert_(b == True)
-        #print a
+        #self.assert_(b == True)
         #self.assert_(a[2][0] == 2)
         
 	# ----
@@ -43,12 +42,16 @@ class TestPFD (unittest.TestCase) :
     # ----
 
     def test_eval(self) :
-		a = [[None, None, None, None, None, None], [None, None, None, None, None, None], [2, 5, 3, None, None, None], [2, 1, 5, None, None, None], [1, 3, None, None, None, None], [1, 1, None, None, None, None]]
-		b = [[None]*(1) for _ in range(6)]
+		a = [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [2, 5, 3, 0, 0, 0], [2, 1, 5, 0, 0, 0], [1, 3, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0]]
+		b = [[0]*(1) for _ in range(6)]
 		v = PFD_eval(a, b)
 		print v
 
-
+    def test_PFD_removal(self) :
+		a = [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [2, 5, 3, 0, 0, 0], [2, 1, 5, 0, 0, 0], [1, 3, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0]]
+		b = [[0]*(1) for _ in range(6)]
+		v = PFD_eval(a, b)
+		print "result= ",v
         
         
         

@@ -71,7 +71,7 @@ def PFD_removal(i,pq,j):
 		idx = 0
 		while idx < removal_size :
 			i[removal][0] = -1
-			list_idx = [i for i, e in enumerate(j[removal]) if e != 0] #getting the list of indeces of non-zero elements in the successors list
+			list_idx = [k for k, e in enumerate(j[removal]) if e != 0] #getting the list of indeces of non-zero elements in the successors list
 			size_list_idx = len(list_idx)
 			index = 1
 			list_successors = []
@@ -81,11 +81,13 @@ def PFD_removal(i,pq,j):
 			size_list_successors = len(list_successors)
 			index = 0
 			while index < size_list_successors:
-				i[list_successors[index][0]] -= 1
-				if i[list_successors[index][0]] == 0:
-					pq.put(i[list_successors[index][0]])
+				i[list_successors[index]][0] -= 1
+				if i[list_successors[index]][0] == 0:
+					pq.put(i[list_successors[index]][0])
 				index += 1
-	result += str(removal) + " "
+			idx += 1
+		result += str(removal) + " "
+	return result	
 					
 		
 		 
@@ -99,7 +101,7 @@ def PFD_removal(i,pq,j):
 
 def PFD_print(w,v):
 
-	w.write("high")	
+	w.write(v)
 	
 
 def PFD_solve (r, w) :
